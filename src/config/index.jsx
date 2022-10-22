@@ -5,4 +5,9 @@ export default class Config {
       userPoolWebClientId: "40gk9atadsefb9oj6nf2chgv6m",
     },
   });
+  static Express = () => ({
+    Dev: {
+      url: "http://localhost:3001",
+    },
+  });
 }

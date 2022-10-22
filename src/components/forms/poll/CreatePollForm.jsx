@@ -1,4 +1,5 @@
 import { Box, Button, Divider, TextField, Typography } from "@mui/material";
+import { useCreatePoll } from "api/useCreatePoll";
 import { PollPrompt } from "components/modular/PollPrompt";
 import { PollPromptType } from "constants/PollPromptType";
 import React from "react";
@@ -6,6 +7,7 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
 export const CreatePollForm = () => {
+  const [createPollQuery, loading] = useCreatePoll();
   const { handleSubmit, control, setValue, watch, formState } = useForm({
     defaultValues: {
       name: "",
@@ -41,7 +43,7 @@ export const CreatePollForm = () => {
           break;
       }
     }
-    console.log(data);
+    createPollQuery(data);
   };
 
   const [promptsValid, setPromptsValid] = React.useState([false]);
@@ -146,7 +148,7 @@ export const CreatePollForm = () => {
       <Box display="flex" justifyContent="flex-end" mb={6}>
         <Button
           type="submit"
-          disabled={!formValid}
+          disabled={!formValid || loading}
           variant="contained"
           style={{ minWidth: 200 }}
         >

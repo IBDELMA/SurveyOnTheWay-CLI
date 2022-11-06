@@ -2,16 +2,23 @@ import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 import { useCreatePoll } from "api/useCreatePoll";
 import { PollPrompt } from "components/modular/PollPrompt";
 import { PollPromptType } from "constants/PollPromptType";
+import { useAuthState } from "contexts/AuthContext";
+import { Paths } from "paths";
 import React from "react";
 
 import { Controller, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export const CreatePollForm = () => {
+  const { user } = useAuthState();
+  const navigate = useNavigate();
   const [createPollQuery, loading] = useCreatePoll();
   const { handleSubmit, control, setValue, watch, formState } = useForm({
     defaultValues: {
       name: "",
       description: "",
+      redirectURL: "",
+      author: user.attributes.nickname,
       prompts: [
         {
           description: "",
@@ -43,7 +50,7 @@ export const CreatePollForm = () => {
           break;
       }
     }
-    createPollQuery(data);
+    createPollQuery(data).finally(() => navigate(Paths.dashboard()));
   };
 
   const [promptsValid, setPromptsValid] = React.useState([false]);
@@ -86,6 +93,22 @@ export const CreatePollForm = () => {
               value={value}
               error={!!error}
               helperText={error ? error.message : null}
+              onChange={onChange}
+            />
+          )}
+        />
+      </Box>
+      <Box mb={2}>
+        <Controller
+          name="redirectURL"
+          control={control}
+          defaultValue=""
+          render={({ field: { onChange, value } }) => (
+            <TextField
+              fullWidth
+              label="Redirect URL"
+              variant="outlined"
+              value={value}
               onChange={onChange}
             />
           )}

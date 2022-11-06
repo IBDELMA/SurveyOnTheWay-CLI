@@ -4,6 +4,7 @@ class Parts {
   static dashboard = "";
   static poll = "poll";
   static createPoll = "create-poll";
+  static notFound = "not-found";
 }
 
 export class Paths {
@@ -12,5 +13,6 @@ export class Paths {
   static dashboard = () => `/${Parts.dashboard}`;
   static pollPath = (pollId) => pollId ?? ":pollId";
   static poll = (pollId) => `/${Parts.poll}/${Paths.pollPath(pollId)}`;
+  static notFound = () => `${Parts.notFound}`;
   static createPoll = () => `/${Parts.createPoll}`;
 }

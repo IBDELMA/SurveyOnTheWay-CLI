@@ -49,6 +49,7 @@ export const Routes = () => (
         </RequireAuth>
       }
     />
+    <Route path={Paths.notFound()} element={<NotFoundView />} />
     <Route path="*" element={<NotFoundView />} />
   </Switch>
 );

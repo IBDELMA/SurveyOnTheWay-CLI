@@ -2,7 +2,7 @@ import React from "react";
 import Config from "../config";
 
 export const useRespondToPoll = () => {
-  const config = Config.Express().Dev;
+  const config = Config.Express().getConfig();
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
   return [

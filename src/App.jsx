@@ -18,6 +18,7 @@ import {
 export function App() {
   Amplify.configure(Config.Amplify());
   const queryClient = new QueryClient({});
+  console.log(process.env.NODE_ENV);
   ChartJS.register(
     CategoryScale,
     LinearScale,

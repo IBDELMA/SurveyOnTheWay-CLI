@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import Config from "../config";
 
 export const useGetPoll = (pollId) => {
-  const config = Config.Express().Dev;
+  const config = Config.Express().getConfig();
 
   return useQuery(
     ["poll", pollId],

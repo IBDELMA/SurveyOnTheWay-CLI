@@ -3,7 +3,7 @@ import { Auth } from "aws-amplify";
 import Config from "../config";
 
 export const useCreatePoll = () => {
-  const config = Config.Express().Dev;
+  const config = Config.Express().getConfig();
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
   return [

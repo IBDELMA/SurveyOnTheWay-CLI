@@ -12,7 +12,7 @@ export default class Config {
             url: "http://localhost:3001",
           }
         : {
-            url: "http://ec2-44-203-92-208.compute-1.amazonaws.com:3001",
+            url: "https://44.203.92.208.nip.io",
           },
   });
 }
